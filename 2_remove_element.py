@@ -1,16 +1,19 @@
 from typing import List
-
+from collections import Counter
 
 class Solution:
-    def removeElement(self, nums: List[int], val: int) -> int:
-        k=0
-        for i in range(len(nums)):
-            if nums[i] != val:
-                nums[k] = nums[i]
-                k+=1
-        return k
+    def majorityElement(self, nums: List[int]) -> int:
+        # Count the frequency of each element in the list
+        frequency = Counter(nums)
 
-sol=Solution()
-print(sol.removeElement([3,2,2,3], 2))
+        # Check for the element that appears more than len(nums) // 2 times
+        for num, count in frequency.items():
+            if count > len(nums) // 2:
+                return num
+        return None  # Return None if no majority element is found
+
+# Test the function
+solution = Solution()
+print(solution.majorityElement([1, 1, 1, 2, 2, 3]))  # Expected output is 1
 
 
